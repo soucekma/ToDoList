@@ -5,32 +5,23 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <TextView
-        android:id="@+id/textViewTitle"
+    <EditText
+        android:id="@+id/editTextTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Title"
-        android:textSize="24sp" />
+        android:hint="Title" />
 
-    <TextView
-        android:id="@+id/textViewDescription"
+    <EditText
+        android:id="@+id/editTextDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Description"
-        android:textSize="18sp"
+        android:hint="Description"
         android:layout_marginTop="8dp" />
 
     <Button
-        android:id="@+id/buttonEdit"
+        android:id="@+id/buttonSave"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Edit"
+        android:text="Save"
         android:layout_marginTop="16dp" />
-
-    <Button
-        android:id="@+id/buttonDelete"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Delete"
-        android:layout_marginTop="8dp" />
 </LinearLayout>
