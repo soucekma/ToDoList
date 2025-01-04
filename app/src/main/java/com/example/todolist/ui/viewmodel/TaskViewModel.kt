@@ -1,33 +1,38 @@
 package com.example.todolist.ui.viewmodel
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.todolist.data.model.Task
 import com.example.todolist.data.repository.TaskRepository
 import kotlinx.coroutines.launch
 
 class TaskViewModel(private val repository: TaskRepository) : ViewModel() {
-
-    val allTasks: LiveData<List<Task>> = repository.allTasks
+    private val _allTasks = MutableLiveData<List<Task>>()
+    val allTasks: LiveData<List<Task>> get() = _allTasks
 
     fun insertTask(task: Task) {
         viewModelScope.launch {
-            repository.insertTask(task)
+            repository.insert(task)
+        }
+    }
+
+    fun updateTask(task: Task) {
+        viewModelScope.launch {
+            repository.update(task)
         }
     }
 
     fun deleteTask(task: Task) {
         viewModelScope.launch {
-            repository.deleteTask(task)
+            repository.delete(task.id)
         }
     }
-}
 
-class TaskViewModelFactory(private val repository: TaskRepository) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(TaskViewModel::class.java)) {
-            @Suppress("UNCHECKED_CAST")
-            return TaskViewModel(repository) as T
+    fun allTasks() {
+        viewModelScope.launch {
+            _allTasks.value = repository.getAllTasks()
         }
-        throw IllegalArgumentException("Unknown ViewModel class")
     }
 }

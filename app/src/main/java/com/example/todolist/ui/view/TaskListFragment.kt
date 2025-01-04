@@ -5,13 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.todolist.R
 import com.example.todolist.data.TaskDatabase
-import com.example.todolist.data.model.Task
 import com.example.todolist.data.repository.TaskRepository
 import com.example.todolist.databinding.FragmentTaskListBinding
 import com.example.todolist.ui.viewmodel.TaskViewModel
@@ -40,21 +37,24 @@ class TaskListFragment : Fragment() {
         viewModel = ViewModelProvider(this, factory).get(TaskViewModel::class.java)
 
         val adapter = TaskListAdapter { task ->
-            // Kliknutí na úkol → Přechod na detail
-            val action = TaskListFragmentDirections.actionTaskListFragmentToTaskDetailFragment()
+            // On click → navigate to task detail
+            val action = TaskListFragmentDirections.actionTaskListFragmentToTaskCreateFragment(taskId = task.id, task = task)
             findNavController().navigate(action)
+
         }
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = adapter
 
+        // Observe the tasks from the ViewModel
         viewModel.allTasks.observe(viewLifecycleOwner) { tasks ->
-            adapter.submitList(tasks)
+            adapter.submitList(tasks) // Submit the tasks to the adapter
         }
 
+        // Floating Action Button to add a new task
         binding.fabAddTask.setOnClickListener {
-            // Přidání nového úkolu
-            val task = Task(title = "Nový úkol", description = "Popis")
-            viewModel.insertTask(task)
+            // Navigate to TaskCreateFragment to create a new task
+            val action = TaskListFragmentDirections.actionTaskListFragmentToTaskCreateFragment(taskId = 0, task = null)
+            findNavController().navigate(action)
         }
     }
 
