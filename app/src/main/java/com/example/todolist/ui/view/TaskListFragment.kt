@@ -5,11 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.todolist.R
 import com.example.todolist.data.TaskDatabase
 import com.example.todolist.data.model.Task
 import com.example.todolist.data.repository.TaskRepository
@@ -39,22 +37,20 @@ class TaskListFragment : Fragment() {
         val factory = TaskViewModelFactory(repository)
         viewModel = ViewModelProvider(this, factory).get(TaskViewModel::class.java)
 
-        val adapter = TaskListAdapter { task ->
-            // Kliknutí na úkol → Přechod na detail
-            val action = TaskListFragmentDirections.actionTaskListFragmentToTaskDetailFragment()
+        val adapter = TaskListAdapter { task: Task ->
+            val action = TaskListFragmentDirections.actionTaskListFragmentToTaskDetailFragment(task.id)
             findNavController().navigate(action)
         }
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = adapter
 
-        viewModel.allTasks.observe(viewLifecycleOwner) { tasks ->
+        viewModel.allTasks().observe(viewLifecycleOwner, { tasks: List<Task> ->
             adapter.submitList(tasks)
-        }
+        })
 
         binding.fabAddTask.setOnClickListener {
-            // Přidání nového úkolu
-            val task = Task(title = "Nový úkol", description = "Popis")
-            viewModel.insertTask(task)
+            val action = TaskListFragmentDirections.actionTaskListFragmentToTaskCreateFragment()
+            findNavController().navigate(action)
         }
     }
 

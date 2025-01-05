@@ -14,9 +14,9 @@
 
     <TextView
         android:id="@+id/taskDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="380dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="4dp"
         android:text="Task Description"
-        android:textAppearance="?attr/textAppearanceBody2"
-        android:layout_marginTop="4dp" />
+        android:textAppearance="?attr/textAppearanceBody2" />
 </LinearLayout>
