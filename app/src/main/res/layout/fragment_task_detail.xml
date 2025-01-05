@@ -10,20 +10,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Title"
-        android:textSize="24sp" />
-
-    <TextView
-        android:id="@+id/textViewDescription"
+        android:textSize="30sp" />
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginTop="8dp"
-        android:text="Description"
-        android:textSize="18sp" />
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp">
+        <TextView
+            android:id="@+id/textViewDescription"
+            android:layout_width="match_parent"
+            android:inputType="textMultiLine"
+            android:minLines="3"
+            android:layout_height="match_parent"
+            android:layout_margin="4dp"
+            android:text="Description"
+            android:textSize="22sp" />
+    </ScrollView>
 
     <Button
         android:id="@+id/buttonEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="20sp"
         android:text="Edit"
         android:layout_marginTop="16dp" />
 
@@ -31,6 +38,7 @@
         android:id="@+id/buttonDelete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="22sp"
         android:text="Delete"
         android:layout_marginTop="8dp" />
 </LinearLayout>

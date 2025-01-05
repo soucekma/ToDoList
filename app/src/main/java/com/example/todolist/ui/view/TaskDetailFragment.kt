@@ -1,6 +1,7 @@
 package com.example.todolist.ui.view
 
 import android.os.Bundle
+import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -46,8 +47,8 @@ class TaskDetailFragment : Fragment() {
         viewModel.getTaskById(taskId).observe(viewLifecycleOwner) { task ->
             task?.let {
                 // Update UI with task details
-                binding.textViewTitle.text = task.title
-                binding.textViewDescription.text = task.description
+                binding.textViewTitle.text = Editable.Factory.getInstance().newEditable(task.title)
+                binding.textViewDescription.text = Editable.Factory.getInstance().newEditable(task.description)
 
                 // Navigate to edit fragment with taskId
                 binding.buttonEdit.setOnClickListener {

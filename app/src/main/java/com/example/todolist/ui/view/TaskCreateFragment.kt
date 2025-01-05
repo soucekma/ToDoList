@@ -9,10 +9,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.todolist.MainActivity
-import com.example.todolist.R
 import com.example.todolist.data.model.Task
+import com.example.todolist.data.repository.TaskRepository
 import com.example.todolist.databinding.FragmentTaskCreateBinding
 import com.example.todolist.ui.viewmodel.TaskViewModel
+import com.example.todolist.ui.viewmodel.TaskViewModelFactory
 
 class TaskCreateFragment : Fragment() {
 
@@ -32,7 +33,10 @@ class TaskCreateFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this)[TaskViewModel::class.java]
+        val taskDao = (requireActivity() as MainActivity).database.taskDao()
+        val repository = TaskRepository(taskDao)
+        val factory = TaskViewModelFactory(repository)
+        viewModel = ViewModelProvider(this, factory)[TaskViewModel::class.java]
 
         // Fetch Task using taskId
         val taskId = args.taskId
@@ -65,7 +69,6 @@ class TaskCreateFragment : Fragment() {
             findNavController().navigateUp()
         }
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
