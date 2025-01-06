@@ -1,0 +1,6 @@
+com.example.todolist.test.app-annotation-experimental-1.3.0-0 C:\Users\merak\.gradle\caches\8.9\transforms\b9cd3c89934596de33c02cacdd6f7796\transformed\annotation-experimental-1.3.0\res
+com.example.todolist.test.app-core-1.5.0-1 C:\Users\merak\.gradle\caches\8.9\transforms\f9dbf059993fa3bd13e6a220d3799faf\transformed\core-1.5.0\res
+com.example.todolist.test.app-androidTest-2 C:\Users\merak\AndroidStudioProjects\ToDoList\app\build\generated\res\resValues\androidTest\debug
+com.example.todolist.test.app-mergeDebugAndroidTestResources-3 C:\Users\merak\AndroidStudioProjects\ToDoList\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
+com.example.todolist.test.app-mergeDebugAndroidTestResources-4 C:\Users\merak\AndroidStudioProjects\ToDoList\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
+com.example.todolist.test.app-debugAndroidTest-5 C:\Users\merak\AndroidStudioProjects\ToDoList\app\build\intermediates\merged_res\debugAndroidTest\mergeDebugAndroidTestResources
