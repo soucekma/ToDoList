@@ -1,3 +1,0 @@
-com.example.todolist.test
-style WhiteBackgroundDialogTheme
-style WhiteBackgroundTheme
