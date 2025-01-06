@@ -2,9 +2,10 @@ package com.example.todolist
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.animation.AnimationUtils
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat // Import this
+import androidx.core.content.ContextCompat
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,6 +29,10 @@ class SplashActivity : AppCompatActivity() {
             ContextCompat.getColor(this, R.color.white)
         }
         rootLayout.setBackgroundColor(backgroundColor)
+
+        // Apply the animation
+        val pulseAnimation = AnimationUtils.loadAnimation(this, R.anim.pulse)
+        rootLayout.startAnimation(pulseAnimation)
 
         // Navigate to MainActivity after a delay
         val splashScreenDuration = 2000L
