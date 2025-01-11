@@ -21,7 +21,7 @@ class TaskDetailFragment : Fragment() {
     private var _binding: FragmentTaskDetailBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: TaskViewModel
-    private val args: TaskDetailFragmentArgs by navArgs() // TaskId from navigation arguments
+    private val args: TaskDetailFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
